@@ -66,7 +66,7 @@ module RubyAMI
       it 'should shut down the client' do
         subject.events_stream.terminate
         sleep 0.2
-        lambda { subject.events_stream }.should raise_exception Celluloid::DeadActorError
+        subject.alive?.should be_false
       end
     end
 
@@ -74,7 +74,7 @@ module RubyAMI
       it 'should shut down the client' do
         subject.actions_stream.terminate
         sleep 0.2
-        lambda { subject.events_stream }.should raise_exception Celluloid::DeadActorError
+        subject.alive?.should be_false
       end
     end
 
